@@ -1,0 +1,8 @@
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/install/strip.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/install/local.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/install.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/list_install_components.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/rebuild_cache.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/edit_cache.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/Example1.dir
+/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build/CMakeFiles/CaloGrid.dir

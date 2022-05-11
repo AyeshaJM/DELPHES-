@@ -1,0 +1,116 @@
+/*
+root -l 'examples/MyReader_new.C("../delphes_h4lep///Events/run_01/tag_1_delphes_events.root")'
+*/
+
+
+#ifdef __CLING__
+R__LOAD_LIBRARY(libDelphes)
+#include "classes/DelphesClasses.h"
+#include "external/ExRootAnalysis/ExRootTreeReader.h"
+#include "external/ExRootAnalysis/ExRootResult.h"
+#include "external/ExRootAnalysis/ExRootTreeBranch.h"
+#include "external/ExRootAnalysis/ExRootTreeWriter.h"
+#include "external/ExRootAnalysis/ExRootFilter.h"
+#else
+class ExRootTreeReader;
+class ExRootResult;
+class ExRootTreeBranch;
+class ExRootTreeWriter;
+class ExRootFilter;
+#endif
+
+#include <iostream>
+#include <cmath>
+#include <array>
+#include <vector>
+#include <TArrayC.h>
+#include <string>
+#include "TH1.h"                                 // for histrograming
+#include "TVirtualPad.h"
+#include "TApplication.h"
+#include "TBranch.h"
+#include "TBranchElement.h"
+#include "TFile.h"    // ROOT, for saving file.
+#include  <map>
+#include "TTree.h"  //for Tree file 
+#include "TROOT.h"
+
+void MyReader_new(const char *fileName){
+  
+  gSystem->Load("libDelphes");
+
+  // Create chain of root trees
+  TChain chain("Delphes");
+  chain.Add(fileName);
+
+.0, 500.0);
+
+
+   Double_t elecPt, MuonPt;
+
+   std::vector<Double_t> ELECPT;
+   std::vector<Double_t> MuPT;
+
+/*------------------ Creates the Branches ------------------------*/
+   outtree->Branch("ELECPT", "vector<Double_t>",&ELECPT);
+   outtree->Branch("MuPT", "vector<Double_t>",&MuPT);
+/*-----------------------------------------------------------------*/
+
+  // Loop over all events
+  for(Int_t entry = 0; entry < numberOfEntries; ++entry)
+  {
+    // print event number in the file
+    if(entry%100==0) cout << "Reading Event " << entry << endl;
+    
+    // Load selected branches with data from specified event
+    treeReader->ReadEntry(entry);
+  
+    // If event contains at least 1 electron
+    if(branchElectron->GetEntries() > 2)
+    {
+      // Take first electron
+       Electron *electron = (Electron*) branchElectron->At(0);
+      
+      // Plot electron transverse momentum
+      elecPt = electron->PT;
+       histElectronPT->Fill(elecPt);
+       ELECPT.push_back(elecPt);
+
+      
+      // Print electron transverse momentum
+       cout << electron->PT << endl;
+    }
+
+    if(branchMuon->GetEntries() > 2)
+    {
+      // Take first electron
+       Muon *muon = (Muon*) branchMuon->At(0);
+
+      // Plot electron transverse momentum
+       histMuonsPT->Fill(muon->PT);
+
+      // Print electron transverse momentum
+       cout << muon->PT << endl;
+    }
+
+outtree->Fill();
+  }// end of events for-loop
+//outfile->Write();
+//   delete outfile;
+
+  // Show resulting histograms
+   TCanvas *c = new TCanvas("c","c");
+   histElectronPT->Draw();
+   TCanvas *c1 = new TCanvas("c1","c1");
+   histMuonsPT->Draw();
+
+  // Save the result as image
+   c->SaveAs("ElectronPT.png");
+   c1->SaveAs("MuonPT.png");
+
+  // Save the histogram in a ROOT file
+   TFile *f = new TFile("ElectronPT.root","RECREATE");
+   histElectronPT->Write("",TObject::kOverwrite);
+   histMuonsPT->Write("",TObject::kOverwrite);
+}
+ 

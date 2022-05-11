@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build",
+  "command": "/usr/bin/c++  -I/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples -g -o CMakeFiles/Example1.dir/Example1.o -c /home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/Example1.cpp",
+  "file": "/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/Example1.cpp"
+},
+{
+  "directory": "/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/build",
+  "command": "/usr/bin/c++  -I/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples -g -o CMakeFiles/CaloGrid.dir/CaloGrid.o -c /home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/CaloGrid.cpp",
+  "file": "/home/a/softwares/madgraph/MG5_aMC_v3_3_1/Delphes/examples/CaloGrid.cpp"
+}
+]
